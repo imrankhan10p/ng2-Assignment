@@ -21,7 +21,7 @@ var CountryListComponent = (function () {
         var _this = this;
         try {
             this.countryService.getCountrys().subscribe(function (res) {
-                _this.countrys = res.geonames;
+                _this.countrys = res;
             });
         }
         catch (ex) {

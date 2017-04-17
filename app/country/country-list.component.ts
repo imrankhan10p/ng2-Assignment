@@ -17,7 +17,7 @@ export class CountryListComponent implements OnInit {
     ngOnInit() { 
         try{
          this.countryService.getCountrys().subscribe
-         ((res) => {this.countrys = res.geonames
+         ((res) => {this.countrys = res
                   });
         }
         catch(ex){

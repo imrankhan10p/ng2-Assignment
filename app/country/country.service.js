@@ -20,17 +20,21 @@ var CountryService = (function () {
     function CountryService(http) {
         this.http = http;
         this.countryUrl = 'http://api.geonames.org/countryInfoJSON?username=thisimran';
+        this.countryByIdUrl = 'http://api.geonames.org/countryInfo?username=thisimran&type=json&country=';
     }
     CountryService.prototype.getCountrys = function () {
-        debugger;
         return this.http.get(this.countryUrl)
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     CountryService.prototype.getCountryById = function (countryCode) {
-        return this.getCountrys()
-            .map(function (country) { return country.geonames.find(function (c) { return c.countryCode === countryCode; }); });
+        return this.http.get("" + this.countryByIdUrl + countryCode)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+        //return this.getCountrys()
+        //    .map((country: ICountry[]) => country.find(c => c.countryCode === countryCode));
     };
     CountryService.prototype.handleError = function (error) {
         console.error(error);

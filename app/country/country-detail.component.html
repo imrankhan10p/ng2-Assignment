@@ -1,6 +1,6 @@
 <div class='panel panel-primary' *ngIf='country'>
     <div class='panel-heading' style='font-size:large'>
-        {{pageTitle + ': ' + country.countryName}}
+        {{pageTitle + ': ' + country.geonames[0].countryName}}
     </div>
 
     <div class='panel-body'>
@@ -8,23 +8,23 @@
             <div class='col-md-6'>
                 <div class='row'>
                     <div class='col-md-3'>Country Name:</div>
-                    <div class='col-md-6'>{{country.countryName}}</div>
+                    <div class='col-md-6'>{{country.geonames[0].countryName}}</div>
                 </div>
                 <div class='row'>
                     <div class='col-md-3'>countryCode:</div>
-                    <div class='col-md-6'>{{country.countryCode}}</div>
+                    <div class='col-md-6'>{{country.geonames[0].countryCode}}</div>
                 </div>
                 <div class='row'>
                     <div class='col-md-3'>continent:</div>
-                    <div class='col-md-6'>{{country.continent}}</div>
+                    <div class='col-md-6'>{{country.geonames[0].continent}}</div>
                 </div>
                 <div class='row'>
-                    <div class='col-md-3'>Availability:</div>
-                    <div class='col-md-6'>{{country.areaInSqKm | number}}</div>
+                    <div class='col-md-3'>areaInSqKm:</div>
+                    <div class='col-md-6'>{{country.geonames[0].areaInSqKm | number}}</div>
                 </div>
                 <div class='row'>
-                    <div class='col-md-3'>Price:</div>
-                    <div class='col-md-6'>{{country.population | number}}</div>
+                    <div class='col-md-3'>population:</div>
+                    <div class='col-md-6'>{{country.geonames[0].population | number}}</div>
                 </div>
             </div>
 

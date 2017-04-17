@@ -12,20 +12,23 @@ import { ICountry } from './country';
 @Injectable()
 export class CountryService {
     private countryUrl = 'http://api.geonames.org/countryInfoJSON?username=thisimran';
-
+    private countryByIdUrl = 'http://api.geonames.org/countryInfo?username=thisimran&type=json&country=';
     constructor(private http: Http) { }
 
     getCountrys(): Observable<ICountry[]> {
-        debugger;
         return this.http.get(this.countryUrl)
             .map((response: Response) => <ICountry[]> response.json())
             .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
 
-    getCountryById(countryCode: string): Observable<ICountry> { 
-        return this.getCountrys()
-            .map((country: ICountry[]) => country.geonames.find(c => c.countryCode === countryCode));
+    getCountryById(countryCode: string): Observable<ICountry> {
+         return this.http.get(`${this.countryByIdUrl}${countryCode}`)
+            .map((response: Response) => <ICountry> response.json())
+            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            .catch(this.handleError);
+        //return this.getCountrys()
+        //    .map((country: ICountry[]) => country.find(c => c.countryCode === countryCode));
     }
 
     private handleError(error: Response) {
