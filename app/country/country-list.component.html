@@ -1,0 +1,36 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{pageTitle}}
+    </div>
+
+    <!-- Filter the Products   -->
+    <div class='panel-body'>
+         <div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>
+
+        <div class='table-responsive'>
+            <table class='table' *ngIf='countrys'>
+                <thead>
+                    <tr>
+                        <th>countryCode</th>
+                        <th>countryName</th>
+                        <th>continent</th>
+                        <th>areaInSqKm</th>
+                        <th>population</th>
+                 </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let item of countrys'>
+                    
+                        <td>{{ item.countryCode }}</td>
+                        <td><a [routerLink]="['/country', item.countryCode]">{{ item.countryName }}
+                        </a></td>
+                        <td>{{ item.continent  }}</td>
+                        <td>{{ item.areaInSqKm  }}</td>
+                        <td>{{ item.population  }}</td>
+                      
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
